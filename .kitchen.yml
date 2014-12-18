@@ -13,18 +13,12 @@ provisioner:
   chef_omnibus_url: https://www.getchef.com/chef/install.sh
 
 platforms:
-- name: ubuntu-12.04
-  run_list:
-    - recipe[apt]
+  - name: ubuntu-12.04
+  - name: ubuntu-12.04-chef11
+    driver_config:
+      require_chef_omnibus: '11.16.4'
 
 suites:
-  - name: known_hosts
+  - name: remove_notification
     run_list:
-      - recipe[ssh_test::known_hosts]
-    attributes:
-      ssh_test:
-        known_hosts:
-          test_entry: 'dummy5 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCe1poC4rUN8CoW+bWfij2KvY6wYhHdZsxbhyfwUVEclCDcjf4W9Xlso3dogVYXIlqdaeB7SqXmczvsOKl51UTE6Or7G7tiffwZoe4z4J1tRX9HCi+5ZOjUeLtvu6764mpMoTpEwFekER4osXosJw29Nu6cLeM+REpyH/RMZwpb1FUEIOptdupepWh7vlvv4fu0dw1ir0t2lHuW/QCmNh9umSsIxGSOJMnwt1ohk4LKYLykHEc3RRsWZS9rPjbNmAerrdbhF8FF5dyMi+rde5dcIApDmWz3hQwIrZdB+fF5oITVXulTsyhoERQyJf/70oWSECzTuO/jRudlx870bC7b'
-  - name: config
-    run_list:
-      - recipe[ssh_test::config]
+      - recipe[hacks::remove_notification]

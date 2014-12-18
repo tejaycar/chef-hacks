@@ -1,1 +1,0 @@
-../../../cookbooks/ssh_test/libraries/test_data.rb
